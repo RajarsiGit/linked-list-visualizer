@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color tokens are RGB triplets (no rgb()) so Tailwind's opacity
+   modifiers (e.g. bg-accent/30) work via rgb(var(--x) / <alpha>). */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: 11 14 15;
+  --color-surface: 14 18 16;
+  --color-surface-alt: 20 26 23;
+
+  --color-border: 31 39 36;
+  --color-border-strong: 38 48 41;
+  --color-border-hover: 58 74 63;
+  --color-border-dashed: 42 51 46;
+
+  --color-text: 232 237 230;
+  --color-text-dim: 201 209 200;
+  --color-text-mute: 92 107 96;
+  --color-text-faint: 58 69 64;
+
+  --color-accent: 159 239 0;
+  --color-accent-bg: 19 32 21;
+
+  --color-danger: 224 88 88;
+  --color-danger-dim: 122 59 59;
+  --color-danger-bg: 26 20 20;
+  --color-danger-bg-hover: 42 22 22;
+  --color-danger-border: 58 32 32;
+  --color-danger-border-hover: 90 44 44;
+
+  --color-warn: 224 184 88;
+  --color-info: 92 143 239;
+
+  --color-scrollbar-track: 14 18 16;
+  --color-scrollbar-thumb: 38 48 41;
+  --color-scrollbar-thumb-hover: 58 74 63;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: 244 246 242;
+  --color-surface: 255 255 255;
+  --color-surface-alt: 234 238 227;
+
+  --color-border: 219 224 213;
+  --color-border-strong: 195 203 185;
+  --color-border-hover: 154 168 138;
+  --color-border-dashed: 195 203 185;
+
+  --color-text: 22 32 26;
+  --color-text-dim: 43 53 46;
+  --color-text-mute: 90 104 92;
+  --color-text-faint: 130 143 126;
+
+  --color-accent: 74 138 0;
+  --color-accent-bg: 231 242 214;
+
+  --color-danger: 194 59 59;
+  --color-danger-dim: 168 106 106;
+  --color-danger-bg: 251 234 234;
+  --color-danger-bg-hover: 246 214 214;
+  --color-danger-border: 232 195 195;
+  --color-danger-border-hover: 214 155 155;
+
+  --color-warn: 166 123 18;
+  --color-info: 47 95 196;
+
+  --color-scrollbar-track: 234 238 227;
+  --color-scrollbar-thumb: 195 203 185;
+  --color-scrollbar-thumb-hover: 154 168 138;
+}
+
+html,
+body {
+  background-color: rgb(var(--color-bg));
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-scrollbar-track));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-scrollbar-thumb));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-scrollbar-thumb-hover));
+}
