@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../../../components/Button";
 
 export default function ControlPanel({
   onInsertHead,
@@ -8,6 +9,7 @@ export default function ControlPanel({
   onStopTraverse,
   onClear,
   traversing,
+  busy,
   maxIndex,
 }) {
   const [value, setValue] = useState("");
@@ -63,34 +65,19 @@ export default function ControlPanel({
           className="w-16 bg-canvas border border-line-strong rounded px-2.5 py-1.5 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-accent/50"
         />
 
-        <Btn onClick={handleInsertHead}>insert_head</Btn>
-        <Btn onClick={handleInsertTail}>insert_tail</Btn>
-        <Btn onClick={handleInsertAt}>insert_at</Btn>
+        <Button onClick={handleInsertHead} disabled={busy}>insert_head</Button>
+        <Button onClick={handleInsertTail} disabled={busy}>insert_tail</Button>
+        <Button onClick={handleInsertAt} disabled={busy}>insert_at</Button>
 
         <div className="w-px h-6 bg-line mx-1" />
 
         {!traversing ? (
-          <Btn onClick={onTraverse} accent>traverse</Btn>
+          <Button onClick={onTraverse} accent disabled={busy}>traverse</Button>
         ) : (
-          <Btn onClick={onStopTraverse} danger>stop</Btn>
+          <Button onClick={onStopTraverse} danger>stop</Button>
         )}
-        <Btn onClick={onClear} danger>clear</Btn>
+        <Button onClick={onClear} danger disabled={busy}>clear</Button>
       </div>
     </div>
-  );
-}
-
-function Btn({ children, onClick, accent, danger }) {
-  const base =
-    "px-3 py-1.5 rounded text-xs border transition-colors uppercase tracking-wide";
-  const styles = danger
-    ? "border-danger-border text-danger hover:bg-danger-bg hover:border-danger-border-hover"
-    : accent
-    ? "border-accent/40 text-accent hover:bg-accent-bg"
-    : "border-line-strong text-ink-dim hover:bg-surface-alt hover:border-line-hover";
-  return (
-    <button onClick={onClick} className={`${base} ${styles}`}>
-      {children}
-    </button>
   );
 }

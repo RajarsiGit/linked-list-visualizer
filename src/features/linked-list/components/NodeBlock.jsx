@@ -1,4 +1,4 @@
-export default function NodeBlock({ node, index, active, onDelete }) {
+export default function NodeBlock({ node, index, active, onDelete, disabled }) {
   return (
     <div className="group relative shrink-0">
       <div className="absolute -top-5 left-0 text-[10px] text-ink-faint">
@@ -37,8 +37,9 @@ export default function NodeBlock({ node, index, active, onDelete }) {
 
         <button
           onClick={onDelete}
+          disabled={disabled}
           aria-label={`Delete node ${node.value}`}
-          className="px-2 flex items-center justify-center bg-danger-bg text-danger-dim hover:bg-danger-bg-hover hover:text-danger transition-colors border-l border-line-strong opacity-0 group-hover:opacity-100 focus:opacity-100"
+          className="px-2 flex items-center justify-center bg-danger-bg text-danger-dim hover:bg-danger-bg-hover hover:text-danger transition-colors border-l border-line-strong opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-0 disabled:pointer-events-none"
         >
           ✕
         </button>
