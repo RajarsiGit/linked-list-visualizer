@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
+import { parseValue } from "../../../lib/parseValue";
 
 export default function ControlPanel({ onSet, onGet, onDelete, onClear, busy }) {
   const [key, setKey] = useState("");
@@ -7,9 +8,9 @@ export default function ControlPanel({ onSet, onGet, onDelete, onClear, busy }) 
 
   const handleSet = () => {
     const k = key.trim();
-    if (k === "" || value.trim() === "") return;
-    const n = Number(value.trim());
-    onSet(k, Number.isFinite(n) ? n : value.trim());
+    const v = parseValue(value);
+    if (k === "" || v === null) return;
+    onSet(k, v);
     setKey("");
     setValue("");
   };

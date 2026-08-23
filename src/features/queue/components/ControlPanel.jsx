@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
+import { parseValue } from "../../../lib/parseValue";
 
 export default function ControlPanel({ onEnqueue, onDequeue, onPeek, onClear, busy }) {
   const [value, setValue] = useState("");
 
   const handleEnqueue = () => {
-    const trimmed = value.trim();
-    if (trimmed === "") return;
-    const n = Number(trimmed);
-    onEnqueue(Number.isFinite(n) ? n : trimmed);
+    const v = parseValue(value);
+    if (v === null) return;
+    onEnqueue(v);
     setValue("");
   };
 

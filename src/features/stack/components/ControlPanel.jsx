@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
+import { parseValue } from "../../../lib/parseValue";
 
 export default function ControlPanel({ onPush, onPop, onPeek, onClear, busy }) {
   const [value, setValue] = useState("");
 
   const handlePush = () => {
-    const trimmed = value.trim();
-    if (trimmed === "") return;
-    const n = Number(trimmed);
-    onPush(Number.isFinite(n) ? n : trimmed);
+    const v = parseValue(value);
+    if (v === null) return;
+    onPush(v);
     setValue("");
   };
 

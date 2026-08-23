@@ -1,14 +1,13 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
+import { parseNumericValue } from "../../../lib/parseValue";
 
 export default function ControlPanel({ onInsert, onExtractMin, onPeek, onClear, busy }) {
   const [value, setValue] = useState("");
 
   const handleInsert = () => {
-    const trimmed = value.trim();
-    if (trimmed === "") return;
-    const n = Number(trimmed);
-    if (!Number.isFinite(n)) return;
+    const n = parseNumericValue(value);
+    if (n === null) return;
     onInsert(n);
     setValue("");
   };

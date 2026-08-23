@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
+import { parseValue } from "../../../lib/parseValue";
 
 export default function ControlPanel({
   onInsertHead,
@@ -15,12 +16,7 @@ export default function ControlPanel({
   const [value, setValue] = useState("");
   const [index, setIndex] = useState("");
 
-  const parsedValue = () => {
-    const trimmed = value.trim();
-    if (trimmed === "") return null;
-    const n = Number(trimmed);
-    return Number.isFinite(n) ? n : trimmed;
-  };
+  const parsedValue = () => parseValue(value);
 
   const handleInsertHead = () => {
     const v = parsedValue();

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
+import { parseNumericValue } from "../../../lib/parseValue";
 
 const ORDERS = [
   { key: "inorder", label: "in_order" },
@@ -20,12 +21,7 @@ export default function ControlPanel({
 }) {
   const [value, setValue] = useState("");
 
-  const parsed = () => {
-    const trimmed = value.trim();
-    if (trimmed === "") return null;
-    const n = Number(trimmed);
-    return Number.isFinite(n) ? n : null;
-  };
+  const parsed = () => parseNumericValue(value);
 
   const run = (fn) => () => {
     const v = parsed();

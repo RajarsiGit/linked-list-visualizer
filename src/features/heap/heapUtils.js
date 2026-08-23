@@ -1,8 +1,6 @@
-let addressCounter = 0x6000;
-const nextAddress = () => {
-  addressCounter += 8;
-  return "0x" + addressCounter.toString(16).padStart(4, "0");
-};
+import { createAddressCounter } from "../../lib/addressCounter";
+
+const nextAddress = createAddressCounter(0x6000);
 
 export const makeNode = (value) => ({
   id: crypto.randomUUID(),
